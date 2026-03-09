@@ -128,13 +128,13 @@ if(op=="/") result = a / b;
 
 /* Special behavior for 2+2 */
 
-if(a==2 && b==2 && op=="+"){
+// if(a==2 && b==2 && op=="+"){
 
-    if(browser=="Chrome") result = 4;
-    if(browser=="Firefox") result = 5;
-    if(browser=="Edge") result = 9;
+//     if(browser=="Chrome") result = 4;
+//     if(browser=="Firefox") result = 5;
+//     if(browser=="Edge") result = 9;
 
-}
+// }
 
 document.getElementById("result").innerHTML = "Result: " + result;
 document.getElementById("browser").innerHTML = "Browser Detected: " + browser;
