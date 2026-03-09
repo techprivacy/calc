@@ -4,20 +4,57 @@
 <title>Smart Browser Calculator</title>
 
 <style>
+
 body{
-    font-family: Arial;
-    text-align:center;
-    margin-top:80px;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#4facfe,#00f2fe);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
-input{
-    padding:8px;
-    width:60px;
+.calculator{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    text-align:center;
+    width:320px;
+}
+
+h2{
+    margin-bottom:20px;
+}
+
+.row{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+}
+
+input, select{
+    padding:10px;
+    font-size:18px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    width:80px;
 }
 
 button{
-    padding:8px 15px;
-    margin-top:10px;
+    margin-top:20px;
+    width:100%;
+    padding:12px;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+    background:#4facfe;
+    color:white;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#2d8cf0;
 }
 
 #result{
@@ -25,28 +62,41 @@ button{
     font-size:22px;
     font-weight:bold;
 }
-</style>
 
+.browser{
+    margin-top:10px;
+    font-size:14px;
+    color:#555;
+}
+
+</style>
 </head>
 
 <body>
 
+<div class="calculator">
+
 <h2>Smart Calculator</h2>
 
+<div class="row">
 <input id="num1" type="number">
+
 <select id="op">
 <option value="+">+</option>
-<option value="-">-</option>
-<option value="*">*</option>
-<option value="/">/</option>
+<option value="-">−</option>
+<option value="*">×</option>
+<option value="/">÷</option>
 </select>
-<input id="num2" type="number">
 
-<br>
+<input id="num2" type="number">
+</div>
 
 <button onclick="calculate()">Calculate</button>
 
 <div id="result"></div>
+<div id="browser" class="browser"></div>
+
+</div>
 
 <script>
 
@@ -59,6 +109,7 @@ if(ua.includes("Firefox")) return "Firefox";
 if(ua.includes("Chrome")) return "Chrome";
 
 return "Other";
+
 }
 
 function calculate(){
@@ -75,7 +126,7 @@ if(op=="-") result = a - b;
 if(op=="*") result = a * b;
 if(op=="/") result = a / b;
 
-/* Special behaviour only for 2+2 */
+/* Special behavior for 2+2 */
 
 if(a==2 && b==2 && op=="+"){
 
@@ -85,8 +136,8 @@ if(a==2 && b==2 && op=="+"){
 
 }
 
-document.getElementById("result").innerHTML =
-"Browser: "+browser+" | Result = "+result;
+document.getElementById("result").innerHTML = "Result: " + result;
+document.getElementById("browser").innerHTML = "Browser Detected: " + browser;
 
 }
 
