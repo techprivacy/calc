@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Smart Browser Calculator</title>
+
+<style>
+body{
+    font-family: Arial;
+    text-align:center;
+    margin-top:80px;
+}
+
+input{
+    padding:8px;
+    width:60px;
+}
+
+button{
+    padding:8px 15px;
+    margin-top:10px;
+}
+
+#result{
+    margin-top:20px;
+    font-size:22px;
+    font-weight:bold;
+}
+</style>
+
+</head>
+
+<body>
+
+<h2>Smart Calculator</h2>
+
+<input id="num1" type="number">
+<select id="op">
+<option value="+">+</option>
+<option value="-">-</option>
+<option value="*">*</option>
+<option value="/">/</option>
+</select>
+<input id="num2" type="number">
+
+<br>
+
+<button onclick="calculate()">Calculate</button>
+
+<div id="result"></div>
+
+<script>
+
+function detectBrowser(){
+
+let ua = navigator.userAgent;
+
+if(ua.includes("Edg")) return "Edge";
+if(ua.includes("Firefox")) return "Firefox";
+if(ua.includes("Chrome")) return "Chrome";
+
+return "Other";
+}
+
+function calculate(){
+
+let a = Number(document.getElementById("num1").value);
+let b = Number(document.getElementById("num2").value);
+let op = document.getElementById("op").value;
+
+let browser = detectBrowser();
+let result;
+
+if(op=="+") result = a + b;
+if(op=="-") result = a - b;
+if(op=="*") result = a * b;
+if(op=="/") result = a / b;
+
+/* Special behaviour only for 2+2 */
+
+if(a==2 && b==2 && op=="+"){
+
+    if(browser=="Chrome") result = 4;
+    if(browser=="Firefox") result = 5;
+    if(browser=="Edge") result = 9;
+
+}
+
+document.getElementById("result").innerHTML =
+"Browser: "+browser+" | Result = "+result;
+
+}
+
+</script>
+
+</body>
+</html>
